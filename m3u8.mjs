@@ -27,9 +27,7 @@ export const extractMp3 = async (url) => {
 	
 	let encryptionEnabled = false;
 	
-	for (let i = 0; i < lines.length; i++) {
-		const line = lines[i];
-	
+	for (const line of lines) {
 		if (line.startsWith("#EXT-X-KEY"))
 			encryptionEnabled = line.includes("AES-128");
 	

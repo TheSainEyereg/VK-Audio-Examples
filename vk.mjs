@@ -36,7 +36,7 @@ if (creds.length !== 3 || expires !== 0 && expires * 1000 < Date.now()) {
 	exit();
 }
 
-console.log(`Token ${expires === 0 ? "never expires" : `expires at ${new Date(expires * 1000).toLocaleString()}`}`, import.meta.url);
+console.log(`Token ${expires === 0 ? "never expires" : `expires at ${new Date(expires * 1000).toLocaleString()}`}`);
 
 const { api } = new VK({
 	token,
