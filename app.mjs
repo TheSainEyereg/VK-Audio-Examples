@@ -3,7 +3,7 @@ import { mkdir } from "node:fs/promises";
 import { createWriteStream } from "node:fs";
 import { join } from "node:path";
 
-import { getPlaylistAudios, getAudios, getOwnerAudios } from "./vk.mjs";
+import { getPlaylistAudios, getAudios, getOwnerAudios, searchAudios } from "./vk.mjs";
 import { extractMp3 } from "./m3u8.mjs";
 
 export const regex = {
@@ -11,7 +11,7 @@ export const regex = {
 	audio: /^https?:\/\/vk\.(?:com|ru)\/audio(?<id>-?\d+_\d+)/
 }
 
-const [,, link] = argv;
+const link = argv.slice(2).join(" ");
 
 const playlistId = regex.playlist.exec(link)?.groups?.id;
 const audioId = regex.audio.exec(link)?.groups?.id;
@@ -24,6 +24,9 @@ if (playlistId) {
 } else if (audioId) {
 	console.log("Single track");
 	toDownload = await getAudios([ audioId ]);
+} else if (link.length > 0) {
+	console.log("Search");
+	toDownload = await searchAudios(link, 1);
 } else {
 	console.log("User");
 	toDownload = await getOwnerAudios();

@@ -9,3 +9,4 @@ Examples of working with audio-related stuff for Russian Facebook/Twitter clone
 0. [Example of obtaining tracks from curent authorized user's profile](vk.mjs#L46-L64)
 0. [Example of retrieving tracks info](vk.mjs#L66-L67)
 0. [Example of getting tracks from the playlist/album](vk.mjs#L69-L72)
+0. [Example of using search](vk.mjs#L74-L77)

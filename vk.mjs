@@ -70,3 +70,8 @@ export const getPlaylistAudios = async (owner_id, playlist_id) => {
 	const { audio_ids } = await api.call("audio.getPlaylistById", { owner_id, playlist_id, extra_fields: "audio_ids" });
 	return await getAudios(audio_ids.map(a => a.audio_id));
 }
+
+export const searchAudios = async (q, count, offset) => {
+	const { items } = await api.call("audio.search", { q, count, offset });
+	return await getAudios(items.map(a => `${a.owner_id}_${a.id}`));
+}
